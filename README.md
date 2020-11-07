@@ -5,4 +5,4 @@ The Unmanned Ground Vehicle (UGV) is responsible for autonomously driving to a g
 
 ## Links ##
 * [AUVSI-Rules](https://www.auvsi-suas.org/competitions)
-* [Research Database]()
+* Research Database
