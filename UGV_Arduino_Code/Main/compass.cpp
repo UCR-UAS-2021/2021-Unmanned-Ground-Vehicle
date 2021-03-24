@@ -1,4 +1,5 @@
 #include "Arduino.h"
+#include "compass.h"
 
 // i2c
 Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();
@@ -60,7 +61,7 @@ void UGVCompass::setup()
 
 
 // LOOP FIX THIS
-void loop() 
+void UGVCompass::loop() 
 {
   lsm.read();  /* ask it to read in the data */ 
 
