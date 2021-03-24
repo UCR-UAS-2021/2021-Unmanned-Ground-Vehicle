@@ -1,3 +1,5 @@
+#include "motor.h"
+
 //Motor A
 int enA = 9;
 int in1 = 8;
