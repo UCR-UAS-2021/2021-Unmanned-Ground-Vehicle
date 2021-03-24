@@ -1,20 +1,6 @@
-// FIX THIS
-#include <Adafruit_SPIDevice.h>
-#include <Adafruit_BMP3XX.h>
-#include <bmp3.h>
-#include <bmp3_defs.h>
-#include <Adafruit_Sensor.h>
-#include <SPI.h>
-#include <Wire.h>
+#include "altimeter.h"
 
-
-#define cs_pin 10    // chip (slave) select
-#define sdo_pin 12   // MISO
-#define sdi_pin 11  // MOSI
-#define sck_pin 13   // SPI Clock Pin
-#define sealvl 1013.25  // 1013.25 mbar (101.325 kPa; 29.921 inHg; 760.00 mmHg) 
-
-double seaToGround = 281;
+double seaToGround = 281; // dif from sealevel to current ground in m
 double bound = 1.524;
 int state = 0;
 long GROUND_LEVEL = 0.0; //change
@@ -31,14 +17,14 @@ Adafruit_BMP3XX bmp;
 
 
 // MOVE THIS
-void setup()//altimeterSetup()
+void UGVAltimeter::setup()//altimeterSetup()
 {
   //Adafruit_BMP3XX bmp(cs_pin);
 
-  Serial.begin(115200);
+  // Serial.begin(115200);
 
-  while (!Serial);
-  Serial.begin(115200);
+  // while (!Serial);
+  // Serial.begin(115200);
 
   // check if BMP 388 sensor is connected
   if (!bmp.begin_SPI(cs_pin, sck_pin, sdo_pin, sdi_pin)) {

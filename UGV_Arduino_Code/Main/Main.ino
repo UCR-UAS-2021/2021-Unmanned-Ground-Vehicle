@@ -1,6 +1,6 @@
-#include "../includes/altimeter.h"
-#include "../includes/compass.h"
-#include "../includes/motor.h"
+#include "altimeter.h"
+//#include "compass.h"
+//#include "motor.h"
 
 void setup() {
   // put your setup code here, to run once:
