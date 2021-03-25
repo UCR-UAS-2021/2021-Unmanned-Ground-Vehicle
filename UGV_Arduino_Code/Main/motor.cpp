@@ -1,3 +1,5 @@
+#include "motor.h"
+
 //Motor A
 int enA = 9;
 int in1 = 8;
@@ -29,21 +31,19 @@ void setup() {
 
 // CHANGE THIS
 void loop() {
- // put your main code here, to run repeatedly:
+  // put your main code here, to run repeatedly:
 
- //testing functions every 5 seconds
- forward();
- delay(5000);
- reverse();
- delay(5000);
- turnClockwise();
- delay(5000);
- turnCounterClockwise();
- delay(5000);
- changeSpeeds();
- delay(5000);
- 
- 
+  //testing functions every 5 seconds
+  forward();
+  delay(5000);
+  reverse();
+  delay(5000);
+  turnClockwise();
+  delay(5000);
+  turnCounterClockwise();
+  delay(5000);
+  changeSpeeds();
+  delay(5000);
 }
 
 //turn motors off
