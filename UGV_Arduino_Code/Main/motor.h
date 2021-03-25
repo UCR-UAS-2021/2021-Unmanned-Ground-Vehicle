@@ -4,5 +4,14 @@
 #include "Arduino.h"
 
 class UGVMotor {
-    
+ private:
+
+ public:
+ UGVMotor();
+ void turnOff();
+ void forward();
+ void reverse();
+ void turnClockwise();
+ void turnCounterClockwise();
+ void changeSpeeds();
 }
