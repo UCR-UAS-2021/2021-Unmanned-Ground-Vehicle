@@ -17,26 +17,27 @@
 // MOVE THIS
 void UGVAltimeter::setup()//altimeterSetup()
 {
-  //Adafruit_BMP3XX bmp(cs_pin);
+ //Adafruit_BMP3XX bmp(cs_pin);
 
-  // Serial.begin(115200);
+ // Serial.begin(115200);
 
-  // while (!Serial);
-  // Serial.begin(115200);
+ // while (!Serial);
+ // Serial.begin(115200);
 
-  // check if BMP 388 sensor is connected
-  if (!bmp.begin_SPI(cs_pin, sck_pin, sdo_pin, sdi_pin)) {
-    Serial.println("Altimeter Sensor not connected.");
-    while (true);
-  }
+ // check if BMP 388 sensor is connected
+ if (!bmp.begin_SPI(cs_pin, sck_pin, sdo_pin, sdi_pin)) {
+   Serial.println("Altimeter Sensor not connected.");
+   while (true);
+ }
 }
+
 
 double UGVAltimeter::altimeterReturn()
 {
-  if (!bmp.performReading()) {
-    Serial.println("Could not read data");
-    return -1.0;
-  }
+ if (!bmp.performReading()) {
+   Serial.println("Could not read data");
+   return -1.0;
+ }
 
   // Serial.println("Altitude Reading: ");
   // double altimeter_data = bmp.readAltitude(sealvl) - seaToGround;
