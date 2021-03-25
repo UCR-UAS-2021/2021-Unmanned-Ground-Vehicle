@@ -1,18 +1,7 @@
 #include "motor.h"
 
-//Motor A
-int enA = 9;
-int in1 = 8;
-int in2 = 7;
-
-//MotorB
-int enB = 3;
-int in3 = 5;
-int in4 = 4;
-
-
 // MOVE THIS
-void setup() {
+void UGVMotor::setup() {
  //set control pins to output
  pinMode(enA, OUTPUT);
  pinMode(enB, OUTPUT);
@@ -30,7 +19,7 @@ void setup() {
 }
 
 // CHANGE THIS
-void loop() {
+void UGVMotor::loop() {
   // put your main code here, to run repeatedly:
 
   //testing functions every 5 seconds
@@ -47,7 +36,7 @@ void loop() {
 }
 
 //turn motors off
-void turnOff() {
+void UGVMotor::turnOff() {
  digitalWrite(in1, LOW);
  digitalWrite(in2, LOW);
  digitalWrite(in3, LOW);
@@ -55,7 +44,7 @@ void turnOff() {
 }
 
 //turns motors forward
-void forward() {
+void UGVMotor::forward() {
  //set max speed
  analogWrite(enA, 255);
  analogWrite(enB, 255);
@@ -71,7 +60,7 @@ void forward() {
 }
 
 //reverse motors
-void reverse() {
+void UGVMotor::reverse() {
  //set max speed
  analogWrite(enA, 255);
  analogWrite(enB, 255);
@@ -86,7 +75,7 @@ void reverse() {
  turnOff();
 }
 
-void turnClockwise() {
+void UGVMotor::turnClockwise() {
  //set max speed
  analogWrite(enA, 255);
  analogWrite(enB, 255);
@@ -101,7 +90,7 @@ void turnClockwise() {
  turnOff();
 }
 
-void turnCounterClockwise() {
+void UGVMotor::turnCounterClockwise() {
  //set max speed
  analogWrite(enA, 255);
  analogWrite(enB, 255);
@@ -116,7 +105,7 @@ void turnCounterClockwise() {
  turnOff();
 }
 
-void changeSpeeds() {
+void UGVMotor::changeSpeeds() {
  //turn on motors forwards
  digitalWrite(in1, LOW);
  digitalWrite(in2, HIGH);

@@ -5,11 +5,6 @@
 Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1();
 double degreeOriented = 0;
 String facing = "null";
-#define LSM9DS1_SCK A5  //SCL on  Teensy
-#define LSM9DS1_MISO 12
-#define LSM9DS1_MOSI A4  //SDA on Teensy
-#define LSM9DS1_XGCS 6
-#define LSM9DS1_MCS 5
 // You can also use software SPI
 //Adafruit_LSM9DS1 lsm = Adafruit_LSM9DS1(LSM9DS1_SCK, LSM9DS1_MISO, LSM9DS1_MOSI, LSM9DS1_XGCS, LSM9DS1_MCS);
 // Or hardware SPI! In this case, only CS pins are passed in

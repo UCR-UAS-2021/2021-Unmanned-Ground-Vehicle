@@ -1,6 +1,11 @@
 #include "altimeter.h"
-//#include "compass.h"
-//#include "motor.h"
+#include "compass.h"
+#include "motor.h"
+
+UGVAltimeter ualt();
+UGVCompass ucomp();
+UGVMotor umot();
+int state = 0;
 
 void setup() {
   // put your setup code here, to run once:
@@ -8,6 +13,20 @@ void setup() {
 }
 
 void loop() {
+  switch(state) {
+    case 0: // altimeter // flying
+    {
+      
+    }
+    case 1: // altimeter // dropping
+    {
+
+    }
+    case 2: // UGV active
+    {
+      // motor movements, sensor, i.e. (AKA DO A BUNCH OF IF STATEMETNS, WE"LL FIGURE OUT THE ORIENTATION STUFF WHEN ELLIE FIXES THINGS)
+    }
+  }
   //  switch(state){
   //   case 0:
   //   {
