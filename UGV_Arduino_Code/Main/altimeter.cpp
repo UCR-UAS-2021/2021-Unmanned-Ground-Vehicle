@@ -1,20 +1,18 @@
 #include "altimeter.h"
 
-double seaToGround = 281; // dif from sealevel to current ground in m
-double bound = 1.524;
-int state = 0;
-long GROUND_LEVEL = 0.0; //change
-long MIN_FLIGHT_LEVEL = 7.0; //meters //change and change sea level
+// #define cs_pin 10    // chip (slave) select
+// #define sdo_pin 12   // MISO
+// #define sdi_pin 11  // MOSI
+// #define sck_pin 13   // SPI Clock Pin
+// #define sealvl 1013.25  // 1013.25 mbar (101.325 kPa; 29.921 inHg; 760.00 mmHg) 
 
-bool isFlying = true;
-bool isDropping = false;
-bool isGrounded = false;
+// double seaToGround = 281;
+// double bound = 1.524;
 
-//Adafruit_BMP3XX bmpCreate() {
-Adafruit_BMP3XX bmp;
-//  return bmp;
-//}
-
+// //Adafruit_BMP3XX bmpCreate() {
+// Adafruit_BMP3XX bmp(cs_pin);
+// //	return bmp;
+// //}
 
 // MOVE THIS
 void UGVAltimeter::setup()//altimeterSetup()
@@ -33,69 +31,34 @@ void UGVAltimeter::setup()//altimeterSetup()
  }
 }
 
-// CHANGE THIS
-void loop() 
-{
-  switch(state){
-   case 0:
-   {
-     //flying state
-     isFlying = detectIfAboveAlt(MIN_FLIGHT_LEVEL);
-     
-     if(!isFlying)
-     {
-       Serial.println("\nState 1");
-       state = 1;
-     }
-     Serial.println("\nStill state 0");
-     delay(500);
-     break;
-   }
-   case 1:
-   {
-     Serial.println("\nWe are here now");
-     //dropping state
-     if(isGrounded)
-     {
-       state = 2;
-     }
-     delay(500);
-     break;
-   }
-   case 2:
-   {
-     //reorient
-     break;
-   }
-  }
-}
 
-double altimeterReturn()
+double UGVAltimeter::altimeterReturn()
 {
  if (!bmp.performReading()) {
    Serial.println("Could not read data");
    return -1.0;
  }
 
- Serial.println("Altitude Reading: ");
- double altimeter_data = bmp.readAltitude(sealvl) - seaToGround;
- Serial.print(altimeter_data);
- 
- if (altimeter_data <= bound) { //test purposes
-   Serial.println("Within 5 feet.");
- }
+  // Serial.println("Altitude Reading: ");
+  // double altimeter_data = bmp.readAltitude(sealvl) - seaToGround;
+  // Serial.print(altimeter_data);
+  
+  // if (altimeter_data <= bound) { //test purposes
+  //   Serial.println("Within 5 feet.");
+  // }
 
- return altimeter_data;
+  return bmp.readAltitude(sealvl) - seaToGround;
 }
 
-bool detectIfAboveAlt(double bound)
+bool UGVAltimeter::detectIfAboveAlt(double bound)
 {
- int count = 0;
- double altimeter_data = altimeterReturn();
- for (int i = 0; i < 5; i++) {
-   if (altimeter_data <= bound) { //take count of how many of 5 tests is within bound
-     count++;
-   }
- }
- return (count <= 4);
+  int count = 0;
+  double altimeter_data = altimeterReturn();
+  if (altimeter_data <= 0) { return false; } // this means the UGV has already crashed and/or landed
+  for (int i = 0; i < 5; i++) {
+    if (altimeter_data <= bound) { //take count of how many of 5 tests is less than alt min
+      count++;
+    }
+  }
+  return !(count <= 4); // return false if the count didn't exceed 4.
 }
