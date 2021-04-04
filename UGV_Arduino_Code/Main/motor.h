@@ -23,5 +23,6 @@ class UGVMotor {
  void reverse();
  void turnClockwise();
  void turnCounterClockwise();
+ void errorAdjustClockwise();
  void changeSpeeds();
 }

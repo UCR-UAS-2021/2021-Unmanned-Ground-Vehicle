@@ -25,6 +25,51 @@ void loop() {
     case 2: // UGV active
     {
       // motor movements, sensor, i.e. (AKA DO A BUNCH OF IF STATEMETNS, WE"LL FIGURE OUT THE ORIENTATION STUFF WHEN ELLIE FIXES THINGS)
+
+      //MOVEMENT DEMO
+
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      //turn clockwise however many degrees
+      umot().turnClockwise();
+
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      //turn counterclockwise however many degrees
+      umot().turnCounterClockwise();
+
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      //turn clockwise however many degrees
+      umot().turnClockwise();
+
+      //reverse for 5 sec
+      umot().reverse();
+
+      //turn counterclockwise however many degrees
+      umot().turnCounterClockwise();
+
+
+      //"ERROR ADJUSTMENT"
+
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      //"error adjust" clockwise for 1 sec (idk how many degrees itll do)
+      umot().errorAdjustClockwise();
+
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      break;
     }
   }
   //  switch(state){

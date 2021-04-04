@@ -56,7 +56,6 @@ void UGVMotor::forward() {
  digitalWrite(in4, HIGH);
 
  delay(5000);
- turnOff();  // might not need this for forward
 }
 
 //reverse motors
@@ -103,6 +102,21 @@ void UGVMotor::turnCounterClockwise() {
 
  delay(5000);
  turnOff();
+}
+
+void UGVMotor::errorAdjustClockwise() {
+  //set low speed
+  analogWrite(enA, 50);
+  analogWrite(enB, 50);
+
+  //turn clockwise slightly
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  digitalWrite(in3, LOW);
+  digitalWrite(in4, HIGH);
+
+  delay(1000);
+  turnOff();
 }
 
 void UGVMotor::changeSpeeds() {
