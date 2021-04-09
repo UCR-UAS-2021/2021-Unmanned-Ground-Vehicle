@@ -13,18 +13,18 @@ void setup() {
 }
 
 void loop() {
-  switch(state) {
-    case 0: // altimeter // flying
-    {
+//   switch(state) {
+//     case 0: // altimeter // flying
+//     {
       
-    }
-    case 1: // altimeter // dropping
-    {
+//     }
+//     case 1: // altimeter // dropping
+//     {
 
-    }
-    case 2: // UGV active
-    {
-      // motor movements, sensor, i.e. (AKA DO A BUNCH OF IF STATEMETNS, WE"LL FIGURE OUT THE ORIENTATION STUFF WHEN ELLIE FIXES THINGS)
+//     }
+//     case 2: // UGV active
+//     {
+//       // motor movements, sensor, i.e. (AKA DO A BUNCH OF IF STATEMETNS, WE"LL FIGURE OUT THE ORIENTATION STUFF WHEN ELLIE FIXES THINGS)
 
       //MOVEMENT DEMO
 
@@ -69,8 +69,8 @@ void loop() {
       umot().forward();
       umot().turnOff();
 
-      break;
-    }
+//       break;
+//     }
   }
   //  switch(state){
   //   case 0:
