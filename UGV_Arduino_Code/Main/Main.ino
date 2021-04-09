@@ -2,9 +2,11 @@
 #include "compass.h"
 #include "motor.h"
 
-UGVAltimeter ualt();
-UGVCompass ucomp();
+// UGVAltimeter ualt();
+// UGVCompass ucomp();
 UGVMotor umot();
+// UGVMotor(enA, in1, in2, enB, in3, in4) 
+
 int state = 0;
 
 void setup() {
