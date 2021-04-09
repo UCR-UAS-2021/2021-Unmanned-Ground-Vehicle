@@ -1,62 +1,106 @@
-#include <Adafruit_Sensor.h>
-#include <>
+#include "altimeter.h"
+#include "compass.h"
+#include "motor.h"
 
-#define cs_pin 10    // chip (slave) select
-#define sdo_pin 12   // MISO
-#define sdi_pin 11  // MOSI
-#define sck_pin 13   // SPI Clock Pin
-#define sealvl 1013.25  // 1013.25 mbar (101.325 kPa; 29.921 inHg; 760.00 mmHg) 
+UGVAltimeter ualt();
+UGVCompass ucomp();
+UGVMotor umot();
+int state = 0;
 
-double seaToGround = 281;
-double bound = 1.524;
+void setup() {
+  // put your setup code here, to run once:
 
-//Adafruit_BMP3XX bmpCreate() {
-Adafruit_BMP3XX bmp(cs_pin);
-//  return bmp;
-//}
-
-void altimeterSetup()
-{
-  //Adafruit_BMP3XX bmp(cs_pin);
-
-  Serial.begin(115200);
-
-  while (!Serial);
-  Serial.begin(115200);
-
-  // check if BMP 388 sensor is connected
-  if (!bmp.begin()) {
-    Serial.println("Altimeter Sensor not connected.");
-    while (true);
-  }
 }
 
-double altimeterReturn()
-{
-  if (!bmp.performReading()) {
-    Serial.println("Could not read data");
-    return -1.0;
-  }
+void loop() {
+  switch(state) {
+    case 0: // altimeter // flying
+    {
+      
+    }
+    case 1: // altimeter // dropping
+    {
 
-  Serial.println("Altitude Reading: ");
-  double altimeter_data = bmp.readAltitude(sealvl) - seaToGround;
-  Serial.print(altimeter_data);
-  
-  if (altimeter_data <= bound) { //test purposes
-    Serial.println("Within 5 feet.");
-  }
+    }
+    case 2: // UGV active
+    {
+      // motor movements, sensor, i.e. (AKA DO A BUNCH OF IF STATEMETNS, WE"LL FIGURE OUT THE ORIENTATION STUFF WHEN ELLIE FIXES THINGS)
 
-  return altimeter_data;
-}
+      //MOVEMENT DEMO
 
-bool detectIfAboveAlt(double bound)
-{
-  int count = 0;
-  double altimeter_data = altimeterReturn();
-  for (int i = 0; i < 5; i++) {
-    if (altimeter_data <= bound) { //take count of how many of 5 tests is within bound
-      count++;
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      //turn clockwise however many degrees
+      umot().turnClockwise();
+
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      //turn counterclockwise however many degrees
+      umot().turnCounterClockwise();
+
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      //turn clockwise however many degrees
+      umot().turnClockwise();
+
+      //reverse for 5 sec
+      umot().reverse();
+
+      //turn counterclockwise however many degrees
+      umot().turnCounterClockwise();
+
+
+      //"ERROR ADJUSTMENT"
+
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      //"error adjust" clockwise for 1 sec (idk how many degrees itll do)
+      umot().errorAdjustClockwise();
+
+      //move forwards for 5 sec
+      umot().forward();
+      umot().turnOff();
+
+      break;
     }
   }
-  return (count <= 4);
+  //  switch(state){
+  //   case 0:
+  //   {
+  //     //flying state
+  //     isFlying = detectIfAboveAlt(MIN_FLIGHT_LEVEL);
+      
+  //     if(!isFlying)
+  //     {
+  //       Serial.println("\nState 1");
+  //       state = 1;
+  //     }
+  //     Serial.println("\nStill state 0");
+  //     delay(500);
+  //     break;
+  //   }
+  //   case 1:
+  //   {
+  //     Serial.println("\nWe are here now");
+  //     //dropping state
+  //     if(isGrounded)
+  //     {
+  //       state = 2;
+  //     }
+  //     delay(500);
+  //     break;
+  //   }
+  //  }
 }
+
+// void orientFix() {
+  
+// }
