@@ -1,13 +1,14 @@
-#include "altimeter.h"
-#include "compass.h"
+// #include "altimeter.h"
+// #include "compass.h"
 #include "motor.h"
 
 // UGVAltimeter ualt();
 // UGVCompass ucomp();
-UGVMotor umot();
-// UGVMotor(enA, in1, in2, enB, in3, in4) 
+UGVMotor umot(/* enA, in1, in2, enB, in3, in4 */);  // pins
+// A, 1-2 = [ ] motor
+// B, 3-4 = [ ] motor
 
-int state = 0;
+// int state = 0;
 
 void setup() {
   // put your setup code here, to run once:
