@@ -1,7 +1,7 @@
 #include "motor.h"
 
 // MOVE THIS
-void UGVMotor::setup() {
+void UGVMotor::setupMotors() {
  //set control pins to output
  pinMode(enA, OUTPUT);
  pinMode(enB, OUTPUT);
@@ -19,21 +19,21 @@ void UGVMotor::setup() {
 }
 
 // CHANGE THIS
-void UGVMotor::loop() {
-  // put your main code here, to run repeatedly:
-
-  //testing functions every 5 seconds
-  forward();
-  delay(5000);
-  reverse();
-  delay(5000);
-  turnClockwise();
-  delay(5000);
-  turnCounterClockwise();
-  delay(5000);
-  changeSpeeds();
-  delay(5000);
-}
+//void UGVMotor::loop() {
+//  // put your main code here, to run repeatedly:
+//
+//  //testing functions every 5 seconds
+//  forward();
+//  delay(5000);
+//  reverse();
+//  delay(5000);
+//  turnClockwise();
+//  delay(5000);
+//  turnCounterClockwise();
+//  delay(5000);
+//  changeSpeeds();
+//  delay(5000);
+//}
 
 //turn motors off
 void UGVMotor::turnOff() {
@@ -41,6 +41,10 @@ void UGVMotor::turnOff() {
  digitalWrite(in2, LOW);
  digitalWrite(in3, LOW);
  digitalWrite(in4, LOW);
+}
+void UGVMotor::stopMoving() {
+ analogWrite(enA, 0);
+ analogWrite(enB, 0);
 }
 
 //turns motors forward
@@ -55,7 +59,7 @@ void UGVMotor::forward() {
  digitalWrite(in3, LOW);
  digitalWrite(in4, HIGH);
 
- delay(5000);
+// delay(5000);
 }
 
 //reverse motors
@@ -70,8 +74,8 @@ void UGVMotor::reverse() {
  digitalWrite(in3, HIGH);
  digitalWrite(in4, LOW);
 
- delay(5000);
- turnOff();
+// delay(5000);
+// turnOff();
 }
 
 void UGVMotor::turnClockwise() {
@@ -85,8 +89,8 @@ void UGVMotor::turnClockwise() {
  digitalWrite(in3, LOW);
  digitalWrite(in4, HIGH);
 
- delay(5000);
- turnOff();
+// delay(5000);
+// turnOff();
 }
 
 void UGVMotor::turnCounterClockwise() {
@@ -100,8 +104,8 @@ void UGVMotor::turnCounterClockwise() {
  digitalWrite(in3, HIGH);
  digitalWrite(in4, LOW);
 
- delay(5000);
- turnOff();
+// delay(5000);
+// turnOff();
 }
 
 void UGVMotor::errorAdjustClockwise() {
@@ -115,30 +119,33 @@ void UGVMotor::errorAdjustClockwise() {
   digitalWrite(in3, LOW);
   digitalWrite(in4, HIGH);
 
-  delay(1000);
-  turnOff();
+//  delay(1000);
+//  turnOff();
 }
 
-void UGVMotor::changeSpeeds() {
+void UGVMotor::changeSpeeds(int acc) {
  //turn on motors forwards
  digitalWrite(in1, LOW);
  digitalWrite(in2, HIGH);
  digitalWrite(in3, LOW);
  digitalWrite(in4, HIGH);
 
- //accelerate from 0 to max
- for (int i = 0; i < 256, i++) {
-   analogWrite(enA, i);
-   analogWrite(enB, i);
-   delay(20);
+ if (acc == 1) {
+   for (int i = 0; i < 256; i++) {
+     //accelerate from 0 to max
+     analogWrite(enA, i);
+     analogWrite(enB, i);
+     delay(20);
+   }
+ }
+ else {
+   //decelerate from max to 0
+   for (int i = 255; i >= 0; --i) {
+     analogWrite(enA, i);
+     analogWrite(enB, i);
+     delay(20);
+   }
  }
 
- //decelerate from max to 0
- for (int i = 255; i >= 0; --i) {
-   analogWrite(enA, i);
-   analogWrite(enB, i);
-   delay(20);
- }
-
- turnOff();
+// turnOff();
 }

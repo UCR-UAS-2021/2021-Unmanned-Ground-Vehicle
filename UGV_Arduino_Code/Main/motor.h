@@ -17,12 +17,16 @@ class UGVMotor {
  public:
  UGVMotor(int A, int i1, int i2, int B, int i3, int i4) 
             :   enA(A), in1(i1), in2(i2),
-                enB(B), in3(i3), in4(i4) {}
+                enB(B), in3(i3), in4(i4) {} 
+ void setupMotors();
  void turnOff();
+ void stopMoving();
  void forward();
  void reverse();
  void turnClockwise();
  void turnCounterClockwise();
  void errorAdjustClockwise();
- void changeSpeeds();
-}
+ void changeSpeeds(int);
+};
+
+#endif
